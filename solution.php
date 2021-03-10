@@ -2,6 +2,9 @@
 
 class Result{
     
+    /*
+    * This function GETs data from the given URL with cURL.
+    */
     protected static function getData($request){
 
         $url = curl_init();
@@ -18,8 +21,15 @@ class Result{
 
     }
 
-    // Return the total number of drawn matches in an exact year. 
-    public function getNumDraws($year){
+    /*
+    * The function shows the number of drawn between matches held that year.
+    * 
+    * The function has an Integer year as a parameter.
+    * The function will return the total number of drawn matches in an exact year as an Integer. 
+    *
+    * sample input (2011) -> output(516)
+    */ 
+    public static function getNumDraws($year){
 
         $totalDrawnCount=0;
         $page = 1;
@@ -46,12 +56,14 @@ class Result{
 
     /* 
     * Total goals by a Team
+    *
     * The function is expected to return an Integer
     * The function accepts following parameters:
     * 1. String Team
     * 2. Integer Year
+    *
     * return integer the total number of goals sctored by the given team in all matches in the given year that the team played in
-    * sample input (barcelona, 2011) -> output : 35
+    * sample input (barcelona, 2011) -> output(35)
     */
     public static function getTotalGoals(string $team, int $year){
         
@@ -91,3 +103,12 @@ class Result{
     }
     
 }
+
+$team = "Barcelona";
+$year= 2011;
+
+$result1 =  Result::getTotalGoals($team,$year);
+$result2 =  Result::getNumDraws($year);
+
+echo $result1;
+echo $result2;
